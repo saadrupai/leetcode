@@ -5,7 +5,22 @@ import (
 )
 
 func productExceptSelf(nums []int) []int {
+	prefix := 1
+	resp := make([]int, 4)
+	resp[0] = 1
+	for i, num := range nums {
+		if i+1 == len(nums) {
+			break
+		}
+		prefix = prefix * num
+		resp[i+1] = prefix
 
+	}
+	postfix := 1
+	for i := len(nums) - 1; i > 0; i-- {
+		postfix = nums[i] * resp[i]
+		resp[i-1] = 
+	}
 }
 
 func main() {
