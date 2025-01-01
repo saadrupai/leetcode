@@ -4,25 +4,42 @@ import (
 	"fmt"
 )
 
+// more optimized
 func productExceptSelf(nums []int) []int {
-	prefix := 1
 	resp := make([]int, len(nums))
-	resp[0] = 1
-	for i, num := range nums {
-		if i+1 == len(nums) {
-			break
-		}
-		prefix = prefix * num
-		resp[i+1] = prefix
 
+	for i, prefix := 0, 1; i <= len(nums); i++ {
+		resp[i] = prefix
+		prefix = nums[i] * prefix
 	}
-	postfix := 1
-	for i := len(nums) - 1; i > 0; i-- {
-		postfix = nums[i] * postfix
-		resp[i-1] = resp[i-1] * postfix
+
+	for i, right := len(nums)-1, 1; i >= 0; i-- {
+		resp[i] = resp[i] * right
+		right = nums[i] * right
 	}
+
 	return resp
 }
+
+// func productExceptSelf(nums []int) []int {
+// 	prefix := 1
+// 	resp := make([]int, len(nums))
+// 	resp[0] = 1
+// 	for i, num := range nums {
+// 		if i+1 == len(nums) {
+// 			break
+// 		}
+// 		prefix = prefix * num
+// 		resp[i+1] = prefix
+
+// 	}
+// 	postfix := 1
+// 	for i := len(nums) - 1; i > 0; i-- {
+// 		postfix = nums[i] * postfix
+// 		resp[i-1] = resp[i-1] * postfix
+// 	}
+// 	return resp
+// }
 
 func main() {
 	arr := []int{-1, 1, 0, -3, 3}
