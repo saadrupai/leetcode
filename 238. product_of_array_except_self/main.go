@@ -6,7 +6,7 @@ import (
 
 func productExceptSelf(nums []int) []int {
 	prefix := 1
-	resp := make([]int, 4)
+	resp := make([]int, len(nums))
 	resp[0] = 1
 	for i, num := range nums {
 		if i+1 == len(nums) {
@@ -18,13 +18,14 @@ func productExceptSelf(nums []int) []int {
 	}
 	postfix := 1
 	for i := len(nums) - 1; i > 0; i-- {
-		postfix = nums[i] * resp[i]
-		resp[i-1] = 
+		postfix = nums[i] * postfix
+		resp[i-1] = resp[i-1] * postfix
 	}
+	return resp
 }
 
 func main() {
-	arr := []int{1, 2, 3, 4}
+	arr := []int{-1, 1, 0, -3, 3}
 	fmt.Println(productExceptSelf(arr))
 }
 
