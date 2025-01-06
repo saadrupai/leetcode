@@ -4,38 +4,54 @@ import (
 	"fmt"
 )
 
-func isValidSudoku(board [][]string) bool {
-	rowMap := map[int]string{}
-	colMap := map[int]string{}
-	type sqKey struct {
-		Row int
-		Col int
-	}
-	squareMap := map[sqKey]string{}
+// func isValidSudoku(board [][]byte) bool {
+// 	rowMap := make([]map[byte]bool, 9)
+// 	colMap := make([]map[byte]bool, 9)
+// 	squareMap := make([]map[byte]bool, 9)
 
-	for row := 0; row < 9; row++ {
-		for col := 0; col < 9; col++ {
-			if board[row][col] == "." {
-				continue
-			}
+// 	// initialize maps for each row, column and squares
+// 	for i := 0; i < 9; i++ {
+// 		rowMap[i] = make(map[byte]bool)
+// 		colMap[i] = make(map[byte]bool)
+// 		squareMap[i] = make(map[byte]bool)
+// 	}
 
-			if board[row][col] == rowMap[row] ||
-				board[row][col] == colMap[col] ||
-				board[row][col] == squareMap[sqKey{Row: row / 3, Col: col / 3}] {
-				return false
-			}
+// 	for row := 0; row < 9; row++ {
+// 		for col := 0; col < 9; col++ {
+// 			numStr := board[row][col]
+// 			if numStr == byte('.') {
+// 				continue
+// 			}
 
-			rowMap[row] = board[row][col]
-			colMap[col] = board[row][col]
-			squareMap[sqKey{Row: row / 3, Col: col / 3}] = board[row][col]
-		}
-	}
+// 			sqrIdx := (row/3)*3 + (col / 3)
 
-	return true
-}
+// 			if rowMap[row][numStr] || colMap[col][numStr] || squareMap[sqrIdx][numStr] {
+// 				return false
+// 			}
+
+// 			rowMap[row][numStr] = true
+// 			colMap[col][numStr] = true
+// 			squareMap[sqrIdx][numStr] = true
+// 		}
+// 	}
+
+// 	return true
+// }
 
 func main() {
-	// arr := [][]string{{"5", "3", ".", ".", "7", ".", ".", ".", "."},
+	arr := [][]byte{
+		{'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+		{'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+		{'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+		{'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+		{'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+		{'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+		{'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+		{'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+		{'.', '.', '.', '.', '8', '.', '.', '7', '9'},
+	}
+	// arr := [][]string{
+	// 	{"8", "3", ".", ".", "7", ".", ".", ".", "."},
 	// 	{"6", ".", ".", "1", "9", "5", ".", ".", "."},
 	// 	{".", "9", "8", ".", ".", ".", ".", "6", "."},
 	// 	{"8", ".", ".", ".", "6", ".", ".", ".", "3"},
@@ -43,18 +59,8 @@ func main() {
 	// 	{"7", ".", ".", ".", "2", ".", ".", ".", "6"},
 	// 	{".", "6", ".", ".", ".", ".", "2", "8", "."},
 	// 	{".", ".", ".", "4", "1", "9", ".", ".", "5"},
-	// 	{".", ".", ".", ".", "8", ".", ".", "7", "9"}}
-	arr := [][]string{
-		{"8", "3", ".", ".", "7", ".", ".", ".", "."},
-		{"6", ".", ".", "1", "9", "5", ".", ".", "."},
-		{".", "9", "8", ".", ".", ".", ".", "6", "."},
-		{"8", ".", ".", ".", "6", ".", ".", ".", "3"},
-		{"4", ".", ".", "8", ".", "3", ".", ".", "1"},
-		{"7", ".", ".", ".", "2", ".", ".", ".", "6"},
-		{".", "6", ".", ".", ".", ".", "2", "8", "."},
-		{".", ".", ".", "4", "1", "9", ".", ".", "5"},
-		{".", ".", ".", ".", "8", ".", ".", "7", "9"},
-	}
+	// 	{".", ".", ".", ".", "8", ".", ".", "7", "9"},
+	// }
 
 	fmt.Println(isValidSudoku(arr))
 }
