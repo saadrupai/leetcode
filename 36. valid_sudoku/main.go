@@ -4,39 +4,39 @@ import (
 	"fmt"
 )
 
-// func isValidSudoku(board [][]byte) bool {
-// 	rowMap := make([]map[byte]bool, 9)
-// 	colMap := make([]map[byte]bool, 9)
-// 	squareMap := make([]map[byte]bool, 9)
+func isValidSudoku(board [][]byte) bool {
+	rowMap := make([]map[byte]bool, 9)
+	colMap := make([]map[byte]bool, 9)
+	squareMap := make([]map[byte]bool, 9)
 
-// 	// initialize maps for each row, column and squares
-// 	for i := 0; i < 9; i++ {
-// 		rowMap[i] = make(map[byte]bool)
-// 		colMap[i] = make(map[byte]bool)
-// 		squareMap[i] = make(map[byte]bool)
-// 	}
+	// initialize maps for each row, column and squares
+	for i := 0; i < 9; i++ {
+		rowMap[i] = make(map[byte]bool)
+		colMap[i] = make(map[byte]bool)
+		squareMap[i] = make(map[byte]bool)
+	}
 
-// 	for row := 0; row < 9; row++ {
-// 		for col := 0; col < 9; col++ {
-// 			numStr := board[row][col]
-// 			if numStr == byte('.') {
-// 				continue
-// 			}
+	for row := 0; row < 9; row++ {
+		for col := 0; col < 9; col++ {
+			numStr := board[row][col]
+			if numStr == byte('.') {
+				continue
+			}
 
-// 			sqrIdx := (row/3)*3 + (col / 3)
+			sqrIdx := (row/3)*3 + (col / 3)
 
-// 			if rowMap[row][numStr] || colMap[col][numStr] || squareMap[sqrIdx][numStr] {
-// 				return false
-// 			}
+			if rowMap[row][numStr] || colMap[col][numStr] || squareMap[sqrIdx][numStr] {
+				return false
+			}
 
-// 			rowMap[row][numStr] = true
-// 			colMap[col][numStr] = true
-// 			squareMap[sqrIdx][numStr] = true
-// 		}
-// 	}
+			rowMap[row][numStr] = true
+			colMap[col][numStr] = true
+			squareMap[sqrIdx][numStr] = true
+		}
+	}
 
-// 	return true
-// }
+	return true
+}
 
 func main() {
 	arr := [][]byte{
