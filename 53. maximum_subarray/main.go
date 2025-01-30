@@ -1,24 +1,47 @@
+package main
 
+import (
+	"fmt"
+)
 
+// optimized
+func maxSubArray(nums []int) int {
+	max := nums[0]
+	currentSum := 0
 
+	for i := 0; i < len(nums); i++ {
+		currentSum += nums[i]
+		if currentSum > max {
+			max = currentSum
+		}
+		if currentSum < 0 {
+			currentSum = 0
+		}
 
+	}
+	return max
+}
 
+//bruteforce
+// func maxSubArray(nums []int) int {
+// 	max := nums[0]
 
+// 	for i := 0; i < len(nums); i++ {
+// 		currentSum := 0
+// 		for j := i; j < len(nums); j++ {
+// 			currentSum += nums[j]
+// 			if currentSum > max {
+// 				max = currentSum
+// 			}
+// 		}
+// 	}
+// 	return max
+// }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+func main() {
+	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
+	fmt.Println(maxSubArray(nums))
+}
 
 // 53. Maximum Subarray
 // Medium
