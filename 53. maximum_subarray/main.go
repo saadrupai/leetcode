@@ -17,7 +17,6 @@ func maxSubArray(nums []int) int {
 		if currentSum < 0 {
 			currentSum = 0
 		}
-
 	}
 	return max
 }
