@@ -4,23 +4,51 @@ import (
 	"fmt"
 )
 
+// optimized o(n), important complexity analysis
 func longestConsecutive(nums []int) int {
-	longest := 1
+	longest := 0
+	numMap := make(map[int]bool, 0)
 	for i := 0; i < len(nums); i++ {
-		count := 1
-		temp := nums[i]
-		for j := 0; j < len(nums); j++ {
-			if nums[j] == temp+1 {
-				count++
+		numMap[nums[i]] = true
+	}
+
+	for key := range numMap {
+		if !numMap[key-1] {
+			temp := key
+			conseqLen := 1
+			for numMap[temp+1] {
+				conseqLen++
 				temp++
 			}
-		}
-		if longest < count {
-			longest = count
+			if conseqLen > longest {
+				longest = conseqLen
+			}
 		}
 	}
 	return longest
 }
+
+// bruteforce
+// func longestConsecutive(nums []int) int {
+// 	longest := 1
+// 	sort.Slice(nums, func(i int, j int) bool {
+// 		return nums[i] < nums[j]
+// 	})
+// 	for i := 0; i < len(nums); i++ {
+// 		count := 1
+// 		temp := nums[i]
+// 		for j := 0; j < len(nums); j++ {
+// 			if nums[j] == temp+1 {
+// 				count++
+// 				temp++
+// 			}
+// 		}
+// 		if longest < count {
+// 			longest = count
+// 		}
+// 	}
+// 	return longest
+// }
 
 func main() {
 	nums := []int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}
