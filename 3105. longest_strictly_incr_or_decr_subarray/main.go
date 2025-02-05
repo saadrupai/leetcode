@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func longestMonotonicSubarray(nums []int) int {
-    
+	
 }
 
 func main() {
