@@ -21,6 +21,6 @@ func hammingWeight(n int) int {
 }
 
 func main() {
-	a := 2147483645
+	a := 2
 	fmt.Println(hammingWeight(a))
 }

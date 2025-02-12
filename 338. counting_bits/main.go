@@ -3,22 +3,20 @@ package main
 import "fmt"
 
 func countBits(n int) []int {
-	resp := []int{}
+	resp := make([]int, n+1)
 	for i := 0; i <= n; i++ {
-		div := i / 2
-		carry := i % 2
-		count := 1
+		div := i
+		binNum := 0
 		if i == 0 {
-			count = 0
+			binNum = 0
 		}
 		for div != 0 {
-			if carry > 0 {
-				count++
-			}
-			carry = div % 2
+			carry := div % 2
+			binNum = binNum*10 + carry
 			div = div / 2
 		}
-		resp = append(resp, count)
+		println(i, binNum)
+		resp[i] = binNum
 	}
 	return resp
 }
