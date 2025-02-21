@@ -10,12 +10,14 @@ func countBits(n int) []int {
 		if i == 0 {
 			binNum = 0
 		}
-		for div != 0 {
-			carry := div % 2
-			binNum = binNum*10 + carry
-			div = div / 2
+
+		if i%2 == 0 {
+			println(binNum)
+			binNum = binNum << i / 2
+			println(binNum)
 		}
 		println(i, binNum)
+		println("---------------")
 		resp[i] = binNum
 	}
 	return resp
